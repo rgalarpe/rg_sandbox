@@ -3,14 +3,17 @@
 const fs = require('fs').promises;
 
 // Function to read file using async/await
-async function readFileAsyncAwait(filePath) {
+async function readWordsAsyncAwait(filePath) {
     try {
         const data = await fs.readFile(filePath, 'utf8');
-        console.log('File contents (Async/Await):', data);
+        const wordsArray = JSON.parse(data);
+        console.log('Words contents (Async/Await):', wordsArray);
+        return wordsArray;
     } catch (err) {
-        console.error('Error reading file:', err);
+        console.error('Error reading file (Async/Await):', err);
+        throw err;
     }
 }
 
-// Call the function with the path to the sample file
-readFileAsyncAwait('sample.txt');
+// Call the function with the path to the data file
+readWordsAsyncAwait('data.txt');
